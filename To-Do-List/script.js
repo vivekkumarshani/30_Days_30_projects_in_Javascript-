@@ -14,6 +14,7 @@ document.querySelector(".btn").addEventListener("click", ()=>{
         
     }
     inputBox.value = '';
+    saveData()
 }
 
 
@@ -22,7 +23,17 @@ document.querySelector(".btn").addEventListener("click", ()=>{
 listContainer.addEventListener("click", (e)=>{
     if (e.target.tagName  === "LI") {
         e.target.classList.toggle("checked")
+        saveData()
     } else if(e.target.tagName  === "SPAN"){
         e.target.parentElement.remove()
+        saveData()
     }
     }, false)
+function saveData(){
+    localStorage.setItem("data", listContainer.innerHTML)
+}
+
+function showList(){
+    listContainer.innerHTML = localStorage.getItem("data")
+}
+showList()
